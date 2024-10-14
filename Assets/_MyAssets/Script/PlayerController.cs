@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Normal speed")] public float speed;
 
     private Vector3 _movementDir;
+    private Vector3 _rotationDir;
 
     
      private void Awake()
@@ -29,7 +30,6 @@ public class PlayerController : MonoBehaviour
             _rb = GetComponent<Rigidbody>();
             _playerInput = GetComponent<PlayerInput>();
 
-            //Debug.Log(_playerInput.actions.controlSchemes);
         }
     
         public void Move(InputAction.CallbackContext context)
@@ -37,8 +37,9 @@ public class PlayerController : MonoBehaviour
             Vector2 v = context.ReadValue<Vector2>();
             //Récupération Input pour se déplacer (ZQSD ou Joystick gauche)
             _movementDir = new Vector3(v.x, 0, v.y);
-            Debug.Log("movement");
+            
         }
+
         
     
         private void FixedUpdate()
@@ -47,9 +48,26 @@ public class PlayerController : MonoBehaviour
     
             //Déplacement à vitesse normale
             _rb.MovePosition(_rb.position + _movementDir * speed * Time.fixedDeltaTime);
-            //rb.velocity = _movementDir * speed;
 
             #endregion
+
+            #region Direction
+           
+    
+            //_rotationDir = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); NE FONCTIONNE PAS => RENVOIE LA POSITION DE LA CAMERA
+            // ESSAYEZ SOIT: RAYCAST AVEC LA CAMERA, CONTINUEZ SUR CETTE METHODE EN TROUVANT LES BONNES VAR, ...
             
+            //Debug.Log(_rotationDir);
+
+           // Vector3 frontDir = new Vector3(_rotationDir.x - transform.position.x, 0f,
+                //_rotationDir.y - transform.position.z);
+                
+            
+            
+            //float angleRadians = Mathf.Atan2(frontDir.y, frontDir.x) * Mathf.Rad2Deg - 90f;
+            //_rb.rotation = Quaternion.Euler(0f, 0f, angleRadians);
+
+            #endregion
+
         }
 }

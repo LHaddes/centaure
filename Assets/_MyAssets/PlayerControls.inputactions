@@ -144,6 +144,39 @@
                 },
                 {
                     "name": "",
+                    "id": "bc67d558-c543-4e60-a98f-9ba7cf90e2c2",
+                    "path": "<DualShockGamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d68397c1-2f40-44e1-a867-9ee951c80fa1",
+                    "path": "<XInputController>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13ad4a4d-e2e7-46d4-a9b5-5091bfda6822",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dd578272-f46c-4a99-a8e6-5bc0d177b6bc",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -156,7 +189,7 @@
                 {
                     "name": "",
                     "id": "9634dd80-c828-4b21-ad54-5cbc7db99bc0",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
