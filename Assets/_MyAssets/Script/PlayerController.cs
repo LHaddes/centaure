@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Normal speed")] public float speed;
 
     private Vector3 _movementDir;
-    private Vector3 _rotationDir;
+    private Vector2 _rotationDir;
 
     
      private void Awake()
@@ -52,20 +52,19 @@ public class PlayerController : MonoBehaviour
             #endregion
 
             #region Direction
-           
-    
-            //_rotationDir = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); NE FONCTIONNE PAS => RENVOIE LA POSITION DE LA CAMERA
-            // ESSAYEZ SOIT: RAYCAST AVEC LA CAMERA, CONTINUEZ SUR CETTE METHODE EN TROUVANT LES BONNES VAR, ...
             
-            //Debug.Log(_rotationDir);
+            Vector3 mousePos = Mouse.current.position.ReadValue(); //On récupère la position de la souris
+            
+            Ray ray = Camera.main.ScreenPointToRay(mousePos); //On envoie un raycast depuis la position de la souris
+            RaycastHit hit;
 
-           // Vector3 frontDir = new Vector3(_rotationDir.x - transform.position.x, 0f,
-                //_rotationDir.y - transform.position.z);
+            if (Physics.Raycast(ray, out hit, 100f))
+            {
+                Vector2 hitPos = new Vector2(hit.point.x - _rb.position.x, -(hit.point.z - _rb.position.z)); //On récupère l'endroit où le raycast a touché quelque chose. On retire ensuite la position du joueur pour en faire l'origine du vecteur (il part du joueur pour aller vers le point où le raycast a touché). Obligé de passer y en négatif car sinon le player tourne dans le mauvais sens
                 
-            
-            
-            //float angleRadians = Mathf.Atan2(frontDir.y, frontDir.x) * Mathf.Rad2Deg - 90f;
-            //_rb.rotation = Quaternion.Euler(0f, 0f, angleRadians);
+                float angle = Mathf.Atan2(hitPos.y, hitPos.x) * Mathf.Rad2Deg + 90f; //On récupère l'angle du vecteur par rapport à l'origine
+                _rb.rotation = Quaternion.Euler(0, angle , 0); //On ajoute l'angle récupéré plus tôt
+            }
 
             #endregion
 
